@@ -11,11 +11,13 @@ This is a very small (1.5 kB) library that keeps things simple. It also cleans u
 
 ## Installation
 
-Include the library files
+Install through bower
 
 ```
 bower install tooltips-angular
 ```
+
+Include the library files
 
 ```html
 <link rel="stylesheet" href="bower_components/dist/angular-tooltips.css" />
