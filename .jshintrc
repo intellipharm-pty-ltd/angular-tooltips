@@ -1,0 +1,18 @@
+{
+    "curly": true,
+    "eqeqeq": true,
+    "futurehostile": true,
+    "maxdepth": 3,
+    "notypeof": true,
+    "unused": false,
+    "globals": {
+        "angular": true,
+        "_": true,
+        "console": true,
+        "module": true,
+        "require": true,
+        "process": true
+    },
+    "es5": false,
+    "esnext": true
+}

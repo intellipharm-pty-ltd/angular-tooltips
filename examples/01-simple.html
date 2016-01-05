@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Example 1 - Simple</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="../dist/angular-tooltips.min.css" />
+
+        <script src="../bower_components/angular/angular.min.js"></script>
+
+        <script src="../dist/angular-tooltips.min.js"></script>
+
+        <script src="app.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="AppCtrl">
+        <div style="text-align:center;">
+            <h1>Angular Tooltips Simple Example</h1>
+            <br>
+
+            <h3>Just add a normal title attribute and angular-tooltips will override it with a much cooler tooltip</h3>
+            <button title="This is a tooltip">Hover Me!</button>
+
+            <br><br>
+
+            <h3>It can be on any element</h3>
+            <span title="Hover some text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam quis mattis massa. Proin aliquet sapien non aliquet mattis. Curabitur non blandit sem. Ut aliquet, turpis sed mollis laoreet, ante dui sollicitudin sapien, aliquet malesuada lacus massa sed enim. Sed condimentum tortor ut vulputate tristique. Morbi rutrum blandit pretium. Nulla suscipit fermentum tortor eget posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae;</span>
+
+            <br><br>
+
+            <h3>It can be any html inside the tooltip</h3>
+            <button title="<strong>Bold text</strong><br>And an icon<br><i class='fa fa-star'><i>">Hover Me!</button>
+        </div>
+    </body>
+</html>
