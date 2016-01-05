@@ -1,0 +1,8 @@
+{
+  "name": "angular-tooltips",
+  "version": "0.1.0",
+  "dependencies": {
+    "tooltips-angular": "^0.1.0",
+    "font-awesome": "fontawesome#~4.5.0"
+  }
+}

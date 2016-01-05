@@ -8,8 +8,16 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="bower_components/tooltips-angular/dist/angular-tooltips.min.css" media="screen">
+
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/tooltips-angular/dist/angular-tooltips.min.js"></script>
+    <script>
+        angular.module('app', ['tooltips']).controller('AppCtrl', function($scope) {});
+    </script>
   </head>
-  <body>
+  <body ng-app="app" ng-controller="AppCtrl">
     <section class="page-header">
       <h1 class="project-name">Angular Tooltips</h1>
       <h2 class="project-tagline">Tooltips for any element using any html in AngularJS with no requirements.</h2>
@@ -58,7 +66,9 @@ but they either have requirements on other libraries or are overly convoluted in
 <h2>
 <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p><a href="http://intellipharm.github.io/angular-tooltips/">http://intellipharm.github.io/angular-tooltips/</a></p>
+<p>
+    <i class="fa fa-star" title="This is a star!"></i>
+</p>
 
 <h2>
 <a id="requrements" class="anchor" href="#requrements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requrements</h2>
@@ -73,6 +83,6 @@ but they either have requirements on other libraries or are overly convoluted in
 
     </section>
 
-  
+
   </body>
 </html>
