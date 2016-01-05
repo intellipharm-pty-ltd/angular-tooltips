@@ -13,9 +13,13 @@ This is a very small (1.5 kB) library that keeps things simple. It also cleans u
 
 Include the library files
 
+```
+bower install tooltips-angular
+```
+
 ```html
-<link rel="stylesheet" href="../dist/angular-tooltips.css" />
-<script src="../dist/angular-tooltips.js"></script>
+<link rel="stylesheet" href="bower_components/dist/angular-tooltips.css" />
+<script src="bower_components/dist/angular-tooltips.js"></script>
 ```
 
 Add the angular model ```tooltips```
