@@ -34,7 +34,7 @@ Just add a normal title attribute and it will be overridden.
 
 ## Demo
 
-Coming soon...
+http://intellipharm.github.io/angular-tooltips/
 
 ## Requrements
 
