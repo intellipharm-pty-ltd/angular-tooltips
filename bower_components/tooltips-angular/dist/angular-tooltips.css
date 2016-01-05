@@ -1,0 +1,37 @@
+.angular-tooltip {
+  position: absolute;
+  background: #000000;
+  z-index: 9999;
+  padding: 3px;
+  border: 2px solid #000000;
+  color: #FFFFFF;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  max-width: 250px;
+  border-radius: 3px; }
+
+.angular-tooltip:before,
+.angular-tooltip:after {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none; }
+
+.angular-tooltip:before {
+  border-color: transparent;
+  border-top-color: inherit;
+  border-width: 8px;
+  margin-left: -8px; }
+
+.angular-tooltip:after {
+  border-color: transparent;
+  border-top-color: #000000;
+  border-width: 5px;
+  margin-left: -5px; }

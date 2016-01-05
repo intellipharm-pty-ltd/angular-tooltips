@@ -1,7 +1,7 @@
 {
   "name": "angular-tooltips",
   "description": "Tooltip Directive For AngularJS",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/intellipharm/angular-tooltips",
   "repository": {
     "type": "git",
@@ -27,17 +27,17 @@
   "license": "MIT",
   "ignore": [
     "*",
-    "!angular-tooltips.css",
-    "!angular-tooltips.js"
+    "!dist/",
+    "!dist/*"
   ],
   "dependencies": {
     "angular": "^1.4.0"
   },
-  "_release": "0.1.0",
+  "_release": "0.1.1",
   "_resolution": {
     "type": "version",
-    "tag": "v0.1.0",
-    "commit": "67626b81748a90f1de63f8c984c2f27edd24ebe7"
+    "tag": "v0.1.1",
+    "commit": "1b0c45fdbfa0144181d48fecac32cba054b92438"
   },
   "_source": "git://github.com/Intellipharm/angular-tooltips.git",
   "_target": "^0.1.0",
