@@ -14,8 +14,8 @@ This is a very small (1.5 kB) library that keeps things simple. It also cleans u
 Include the library files
 
 ```html
-<link rel="stylesheet" href="../angular-tooltips.css" />
-<script src="../angular-tooltips.js"></script>
+<link rel="stylesheet" href="../dist/angular-tooltips.css" />
+<script src="../dist/angular-tooltips.js"></script>
 ```
 
 Add the angular model ```tooltips```
