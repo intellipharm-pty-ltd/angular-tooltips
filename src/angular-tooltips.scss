@@ -1,41 +1,262 @@
 $background: #000000;
+$border: #000000;
 $color: #FFFFFF;
+$before-width: 8px;
+$after-width: 5px;
 
 .angular-tooltip {
     position: absolute;
     background: $background;
     z-index: 9999;
     padding: 3px;
-    border: 2px solid $background;
+    border: 2px solid $border;
     color: $color;
     pointer-events: none;
     user-select: none;
     max-width: 250px;
     border-radius: 3px;
-}
 
-.angular-tooltip:before,
-.angular-tooltip:after {
-	top: 100%;
-	left: 50%;
-	border: solid transparent;
-	content: " ";
-	height: 0;
-	width: 0;
-	position: absolute;
-	pointer-events: none;
-}
+    &:before,
+    &:after {
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+    }
 
-.angular-tooltip:before {
-	border-color: rgba(0, 0, 0, 0);
-	border-top-color: inherit;
-	border-width: 8px;
-	margin-left: -8px;
-}
+    &:before {
+        border-color: rgba(0, 0, 0, 0);
+        border-width: $before-width;
+    }
 
-.angular-tooltip:after {
-	border-color: rgba(0, 0, 0, 0);
-	border-top-color: #000000;
-	border-width: 5px;
-	margin-left: -5px;
+    &:after {
+        border-color: rgba(0, 0, 0, 0);
+        border-width: $after-width;
+    }
+
+    &.angular-tooltip-top,
+    &.angular-tooltip-top-center,
+    &.angular-tooltip-top-middle {
+        &:before,
+        &:after {
+            top: 100%;
+left: 50%;
+        }
+
+        &:before {
+            margin-left: -$before-width;
+            border-top-color: $border;
+        }
+
+        &:after {
+            margin-left: -$after-width;
+            border-top-color: $background;
+        }
+    }
+
+    &.angular-tooltip-top-right {
+        &:before,
+        &:after {
+            top: 100%;
+            right: calc(100% - #{$before-width});
+        }
+
+        &:before {
+            margin-right: -$before-width;
+            border-top-color: $border;
+        }
+
+        &:after {
+            margin-right: -$after-width;
+            border-top-color: $background;
+        }
+    }
+
+    &.angular-tooltip-right-top {
+        &:before,
+        &:after {
+            top: calc(100% - #{$before-width});
+            right: 100%;
+        }
+
+        &:before {
+            margin-top: -$before-width;
+            border-right-color: $border;
+        }
+
+        &:after {
+            margin-top: -$after-width;
+            border-right-color: $background;
+        }
+    }
+
+    &.angular-tooltip-right,
+    &.angular-tooltip-right-center,
+    &.angular-tooltip-right-middle {
+        &:before,
+        &:after {
+            top: 50%;
+            right: 100%;
+        }
+
+        &:before {
+            margin-top: -$before-width;
+            border-right-color: $border;
+        }
+
+        &:after {
+            margin-top: -$after-width;
+            border-right-color: $background;
+        }
+    }
+
+    &.angular-tooltip-right-bottom {
+        &:before,
+        &:after {
+            bottom: calc(100% - #{$before-width});
+            right: 100%;
+        }
+
+        &:before {
+            margin-bottom: -$before-width;
+            border-right-color: $border;
+        }
+
+        &:after {
+            margin-bottom: -$after-width;
+            border-right-color: $background;
+        }
+    }
+
+    &.angular-tooltip-bottom-right {
+        &:before,
+        &:after {
+            bottom: 100%;
+            right: calc(100% - #{$before-width});
+        }
+
+        &:before {
+            margin-right: -$before-width;
+            border-bottom-color: $border;
+        }
+
+        &:after {
+            margin-right: -$after-width;
+            border-bottom-color: $background;
+        }
+    }
+
+    &.angular-tooltip-bottom,
+    &.angular-tooltip-bottom-center,
+    &.angular-tooltip-bottom-middle {
+        &:before,
+        &:after {
+            bottom: 100%;
+            left: 50%
+        }
+
+        &:before {
+            margin-left: -$before-width;
+            border-bottom-color: $border;
+        }
+
+        &:after {
+            margin-left: -$after-width;
+            border-bottom-color: $background;
+        }
+    }
+
+    &.angular-tooltip-bottom-left {
+        &:before,
+        &:after {
+            bottom: 100%;
+            left: calc(100% - #{$before-width});
+        }
+
+        &:before {
+            margin-left: -$before-width;
+            border-bottom-color: $border;
+        }
+
+        &:after {
+            margin-left: -$after-width;
+            border-bottom-color: $background;
+        }
+    }
+
+    &.angular-tooltip-left-bottom {
+        &:before,
+        &:after {
+            bottom: calc(100% - #{$before-width});
+            left: 100%;
+        }
+
+        &:before {
+            margin-bottom: -$before-width;
+            border-left-color: $border;
+        }
+
+        &:after {
+            margin-bottom: -$after-width;
+            border-left-color: $background;
+        }
+    }
+
+    &.angular-tooltip-left,
+    &.angular-tooltip-left-center,
+    &.angular-tooltip-left-middle {
+        &:before,
+        &:after {
+            top: 50%;
+            left: 100%;
+        }
+
+        &:before {
+            margin-top: -$before-width;
+            border-left-color: $border;
+        }
+
+        &:after {
+            margin-top: -$after-width;
+            border-left-color: $background;
+        }
+    }
+
+    &.angular-tooltip-left-top {
+        &:before,
+        &:after {
+            top: calc(100% - #{$before-width});
+            left: 100%;
+        }
+
+        &:before {
+            margin-top: -$before-width;
+            border-left-color: $border;
+        }
+
+        &:after {
+            margin-top: -$after-width;
+            border-left-color: $background;
+        }
+    }
+
+    &.angular-tooltip-top-left {
+        &:before,
+        &:after {
+            top: 100%;
+            left: calc(100% - #{$before-width});
+        }
+
+        &:before {
+            margin-left: -$before-width;
+            border-top-color: $border;
+        }
+
+        &:after {
+            margin-left: -$after-width;
+            border-top-color: $background;
+        }
+    }
 }

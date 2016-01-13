@@ -1,0 +1,124 @@
+<html>
+    <head>
+        <title>Example 2 - Directions</title>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="../dist/angular-tooltips.css" />
+
+        <script src="../bower_components/angular/angular.min.js"></script>
+
+        <!-- <script src="../dist/angular-tooltips.min.js"></script> -->
+        <script src="../src/angular-tooltips.js"></script>
+
+        <style>
+            .wrapper {
+                position: relative;
+                width: 24em;
+                height: 24em;
+                padding: 2.8em;
+                border-radius: 50%;
+                margin: 1.75em auto 0;
+            }
+
+            button {
+                position: absolute;
+                top: 50%; left: 50%;
+                width: 4em; height: 4em;
+                margin: -2em;
+                background: #2F71AA;
+                color: #FFFFFF;
+                border: none;
+            }
+
+            button.top {
+                transform: rotate(270deg) translate(12em) rotate(-270deg);
+            }
+            button.top-right {
+                transform: rotate(300deg) translate(12em) rotate(-300deg);
+            }
+            button.right-top {
+                transform: rotate(330deg) translate(12em) rotate(-330deg);
+            }
+            button.right {
+                transform: translate(12em);
+            }
+            button.right-bottom {
+                transform: rotate(30deg) translate(12em) rotate(-30deg);
+            }
+            button.bottom-right {
+                transform: rotate(60deg) translate(12em) rotate(-60deg);
+            }
+            button.bottom {
+                transform: rotate(90deg) translate(12em) rotate(-90deg);
+            }
+            button.bottom-left {
+                transform: rotate(120deg) translate(12em) rotate(-120deg);
+            }
+            button.left-bottom {
+                transform: rotate(150deg) translate(12em) rotate(-150deg);
+            }
+            button.left {
+                transform: translate(-12em);
+            }
+            button.left-top {
+                transform: rotate(210deg) translate(12em) rotate(-210deg);
+            }
+            button.top-left {
+                transform: rotate(240deg) translate(12em) rotate(-240deg);
+            }
+        </style>
+
+        <script src="app.js"></script>
+    </head>
+    <body ng-app="app" ng-controller="AppCtrl">
+        <div>
+            <h1>Angular Tooltips Directions Example</h1>
+            <br>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque mi elit, consequat nec volutpat at, tincidunt quis massa. Integer aliquet ultrices nisl a volutpat. Duis lacinia vel nulla vitae dignissim. Nulla efficitur quis quam ut ornare. Sed rutrum volutpat arcu, at dapibus ex hendrerit sit amet. Nulla facilisis, augue rutrum tempus consequat, nisl nibh consectetur neque, vel pharetra diam felis eget urna. Morbi sed enim nulla.</p>
+
+            <p>Donec semper leo rutrum, euismod felis ut, gravida mauris. In feugiat, neque et vehicula porttitor, enim sapien fringilla dolor, id ullamcorper risus neque ac ex. Quisque a tincidunt dolor. Curabitur non tellus eleifend, sollicitudin eros non, venenatis magna. Integer ac sollicitudin mi. Etiam varius, nisl scelerisque vulputate posuere, orci est dignissim purus, eu semper neque sem sit amet sem. Vivamus non imperdiet justo. Sed lobortis neque at mauris fermentum dapibus. Sed mi ipsum, lobortis vitae elit sed, cursus fringilla lectus. Proin non ex a mauris cursus tempus. Sed tincidunt nisl mi, at aliquam nulla accumsan id. Donec eget luctus est. Nullam consectetur tincidunt mi congue scelerisque. Donec in libero cursus augue maximus fringilla vitae sed ex. Sed vulputate mollis cursus.</p>
+
+            <p>Vivamus urna neque, efficitur in tellus ut, tristique placerat felis. Sed vel semper dolor. Fusce non dignissim turpis, vitae posuere dui. Integer vel nulla sed libero suscipit luctus. Sed a pulvinar lacus. Aliquam ac iaculis massa. Nulla ultricies lorem mattis congue consectetur. Phasellus quis metus eget mi efficitur gravida. Phasellus dignissim felis et elit faucibus, eu rutrum diam egestas. Aenean at imperdiet justo, vel efficitur turpis. Nunc viverra nisi sit amet purus fringilla sodales.</p>
+
+            <p>Integer a dictum diam. Nunc sed porta ligula, nec bibendum arcu. Curabitur interdum ante blandit aliquet rhoncus. Quisque volutpat sed felis placerat bibendum. Nam dictum at lectus sed feugiat. Vestibulum et vehicula tortor, vitae condimentum justo. Vivamus ultrices id sapien sed ultrices. Donec sodales placerat dolor, et lobortis lorem lacinia vel. Nam et tempus lorem, vitae egestas sem. Nam sed suscipit felis.</p>
+
+            <p>Cras posuere nibh vitae neque placerat, in semper ex consectetur. Fusce ac scelerisque massa. Aliquam aliquet leo vel dui porta auctor. Donec aliquet quis ligula sit amet gravida. Quisque bibendum condimentum nulla, vel convallis leo malesuada sit amet. Cras egestas gravida urna, non aliquet massa placerat ac. Sed in lectus ut eros scelerisque gravida ac vitae sapien. Donec sed luctus justo, eu condimentum mauris.</p>
+
+
+            <div style="width:45%; display:inline-block;">
+                <div class="wrapper">
+                    <button class="top"          ng-attr-title="{{tooltip}}" title-direction="top"         >Top</button>
+                    <button class="top-right"    ng-attr-title="{{tooltip}}" title-direction="top-right"   >Top Right</button>
+                    <button class="right-top"    ng-attr-title="{{tooltip}}" title-direction="right-top"   >Right Top</button>
+                    <button class="right"        ng-attr-title="{{tooltip}}" title-direction="right"       >Right</button>
+                    <button class="right-bottom" ng-attr-title="{{tooltip}}" title-direction="right-bottom">Right Bottom</button>
+                    <button class="bottom-right" ng-attr-title="{{tooltip}}" title-direction="bottom-right">Bottom Right</button>
+                    <button class="bottom"       ng-attr-title="{{tooltip}}" title-direction="bottom"      >Bottom</button>
+                    <button class="bottom-left"  ng-attr-title="{{tooltip}}" title-direction="bottom-left" >Bottom Left</button>
+                    <button class="left-bottom"  ng-attr-title="{{tooltip}}" title-direction="left-bottom" >Left Bottom</button>
+                    <button class="left"         ng-attr-title="{{tooltip}}" title-direction="left"        >Left</button>
+                    <button class="left-top"     ng-attr-title="{{tooltip}}" title-direction="left-top"    >Left Top</button>
+                    <button class="top-left"     ng-attr-title="{{tooltip}}" title-direction="top-left"    >Top Left</button>
+                </div>
+            </div>
+            <div style="width:45%; display:inline-block;">
+                <div class="wrapper">
+                    <button class="top"          ng-attr-title="{{tooltip}}" title-direction="bottom"      >Bottom</button>
+                    <button class="top-right"    ng-attr-title="{{tooltip}}" title-direction="bottom-left" >Bottom Left</button>
+                    <button class="right-top"    ng-attr-title="{{tooltip}}" title-direction="left-bottom" >Left Bottom</button>
+                    <button class="right"        ng-attr-title="{{tooltip}}" title-direction="left"        >Left</button>
+                    <button class="right-bottom" ng-attr-title="{{tooltip}}" title-direction="left-top"    >Left Top</button>
+                    <button class="bottom-right" ng-attr-title="{{tooltip}}" title-direction="top-left"    >Top Left</button>
+                    <button class="bottom"       ng-attr-title="{{tooltip}}" title-direction="top"         >Top</button>
+                    <button class="bottom-left"  ng-attr-title="{{tooltip}}" title-direction="top-right"   >Top Right</button>
+                    <button class="left-bottom"  ng-attr-title="{{tooltip}}" title-direction="right-top"   >Right Top</button>
+                    <button class="left"         ng-attr-title="{{tooltip}}" title-direction="right"       >Right</button>
+                    <button class="left-top"     ng-attr-title="{{tooltip}}" title-direction="right-bottom">Right Bottom</button>
+                    <button class="top-left"     ng-attr-title="{{tooltip}}" title-direction="bottom-right">Bottom Right</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
