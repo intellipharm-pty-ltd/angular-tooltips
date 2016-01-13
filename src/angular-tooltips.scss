@@ -5,6 +5,9 @@ $before-width: 8px;
 $after-width: 5px;
 
 .angular-tooltip {
+    transition: opacity 500ms;
+    opacity: 0;
+
     position: absolute;
     background: $background;
     z-index: 9999;
@@ -15,6 +18,10 @@ $after-width: 5px;
     user-select: none;
     max-width: 250px;
     border-radius: 3px;
+
+    &.angular-tooltip-fade-in {
+        opacity: 1;
+    }
 
     &:before,
     &:after {
@@ -42,7 +49,7 @@ $after-width: 5px;
         &:before,
         &:after {
             top: 100%;
-left: 50%;
+            left: 50%;
         }
 
         &:before {

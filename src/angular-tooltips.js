@@ -6,7 +6,7 @@
             restrict: 'A',
             scope: true,
             link: function ($scope, element, attrs) {
-                if (attrs.title) {
+                if (attrs.title || attrs.tooltip) {
                     // stop the standard tooltip from being shown
                     $timeout(function () {
                         element.removeAttr('ng-attr-title');
@@ -16,19 +16,34 @@
                     element.on('mouseover', function (event) {
                         var direction = $scope.getDirection();
 
+                        // create the tooltip
                         var tooltip = angular.element('<div>')
                             .addClass('angular-tooltip angular-tooltip-' + direction)
-                            .html(attrs.title);
+                            .html(attrs.title || attrs.tooltip);
 
+                        // append to the body
                         angular.element(document).find('body').append(tooltip);
 
-                        tooltip.css($scope.calculatePosition(tooltip, direction));
+                        // position the tooltip
+                        var css = $scope.calculatePosition(tooltip, direction);
+
+                        tooltip.css(css);
+
+                        // fade in
+                        tooltip.addClass('angular-tooltip-fade-in');
                     });
 
+                    // removes all tooltips from the document to reduce ghosts
                     $scope.removeTooltip = function () {
-                        angular.element(document.querySelectorAll('.angular-tooltip')).remove();
+                        var tooltip = angular.element(document.querySelectorAll('.angular-tooltip'));
+                        tooltip.removeClass('angular-tooltip-fade-in');
+
+                        $timeout(function() {
+                            tooltip.remove();
+                        }, 300);
                     };
 
+                    // gets the current direction value
                     $scope.getDirection = function() {
                         return element.attr('tooltip-direction') || element.attr('title-direction') || 'top';
                     };
@@ -135,5 +150,8 @@
 
     directive.$inject = ['$timeout'];
 
-    angular.module('tooltips', []).directive('title', directive);
+    angular
+        .module('tooltips', [])
+        .directive('title', directive)
+        .directive('tooltip', directive);
 })();
