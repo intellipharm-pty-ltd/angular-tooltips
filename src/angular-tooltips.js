@@ -59,24 +59,20 @@
                             case 'top':
                             case 'top-center':
                             case 'top-middle':
-                            default:
                                 return {
                                     left: elBounding.left + (elBounding.width / 2) - (tooltipBounding.width / 2) + scrollLeft + 'px',
                                     top: elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'top-right':
                                 return {
                                     left: elBounding.left + elBounding.width - arrow_padding + scrollLeft + 'px',
                                     top: elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'right-top':
                                 return {
                                     left: elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft + 'px',
                                     top: elBounding.top - tooltipBounding.height + arrow_padding + scrollTop + 'px',
                                 };
-                                break;
                             case 'right':
                             case 'right-center':
                             case 'right-middle':
@@ -84,19 +80,16 @@
                                     left: elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft + 'px',
                                     top: elBounding.top + (elBounding.height / 2) - (tooltipBounding.height / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'right-bottom':
                                 return {
                                     left: elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft + 'px',
                                     top: elBounding.top + elBounding.height - arrow_padding + scrollTop + 'px',
                                 };
-                                break;
                             case 'bottom-right':
                                 return {
                                     left: elBounding.left + elBounding.width - arrow_padding + scrollLeft + 'px',
                                     top: elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'bottom':
                             case 'bottom-center':
                             case 'bottom-middle':
@@ -104,19 +97,16 @@
                                     left: elBounding.left + (elBounding.width / 2) - (tooltipBounding.width / 2) + scrollLeft + 'px',
                                     top: elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'bottom-left':
                                 return {
                                     left: elBounding.left - tooltipBounding.width + arrow_padding + scrollLeft + 'px',
                                     top: elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'left-bottom':
                                 return {
                                     left: elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft + 'px',
                                     top: elBounding.top + elBounding.height - arrow_padding + scrollTop + 'px',
                                 };
-                                break;
                             case 'left':
                             case 'left-center':
                             case 'left-middle':
@@ -124,21 +114,18 @@
                                     left: elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft + 'px',
                                     top: elBounding.top + (elBounding.height / 2) - (tooltipBounding.height / 2) + scrollTop + 'px',
                                 };
-                                break;
                             case 'left-top':
                                 return {
                                     left: elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft + 'px',
                                     top: elBounding.top - tooltipBounding.height + arrow_padding + scrollTop + 'px',
                                 };
-                                break;
                             case 'top-left':
                                 return {
                                     left: elBounding.left - tooltipBounding.width + arrow_padding + scrollLeft + 'px',
                                     top: elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop + 'px',
                                 };
-                                break;
                         }
-                    }
+                    };
 
                     element.on('mouseout', $scope.removeTooltip);
                     element.on('destroy', $scope.removeTooltip);
