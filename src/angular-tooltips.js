@@ -35,12 +35,12 @@
 
                     // removes all tooltips from the document to reduce ghosts
                     $scope.removeTooltip = function () {
-                        var tooltip = angular.element(document.querySelectorAll('.angular-tooltip'));
-                        tooltip.removeClass('angular-tooltip-fade-in');
-
-                        $timeout(function() {
+                        // var tooltip = angular.element(document.querySelectorAll('.angular-tooltip'));
+                        // tooltip.removeClass('angular-tooltip-fade-in');
+                        //
+                        // $timeout(function() {
                             tooltip.remove();
-                        }, 300);
+                        // }, 300);
                     };
 
                     // gets the current direction value
