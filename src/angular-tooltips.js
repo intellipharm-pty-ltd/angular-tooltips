@@ -4,7 +4,9 @@
     var directive = function ($timeout) {
         return {
             restrict: 'A',
-            scope: true,
+            scope: {
+                title: '@'
+            },
             link: function ($scope, element, attrs) {
                 // adds the tooltip to the body
                 $scope.createTooltip = function (event) {
@@ -12,22 +14,37 @@
                         var direction = $scope.getDirection();
 
                         // create the tooltip
-                        var tooltip = angular.element('<div>')
-                        .addClass('angular-tooltip angular-tooltip-' + direction)
-                        .html(attrs.title || attrs.tooltip);
+                        $scope.tooltipElement = angular.element('<div>')
+                        .addClass('angular-tooltip angular-tooltip-' + direction);
 
                         // append to the body
-                        angular.element(document).find('body').append(tooltip);
+                        angular.element(document).find('body').append($scope.tooltipElement);
 
-                        // position the tooltip
-                        var css = $scope.calculatePosition(tooltip, direction);
-
-                        tooltip.css(css);
+                        $scope.updateTooltip(attrs.title || attrs.tooltip);
 
                         // fade in
-                        tooltip.addClass('angular-tooltip-fade-in');
+                        $scope.tooltipElement.addClass('angular-tooltip-fade-in');
                     }
                 };
+
+                $scope.updateTooltip = function(title) {
+                    $scope.tooltipElement.html(title);
+
+                    var css = $scope.calculatePosition($scope.tooltipElement, $scope.getDirection());
+                    $scope.tooltipElement.css(css);
+
+                    // stop the standard tooltip from being shown
+                    $timeout(function () {
+                        element.removeAttr('ng-attr-title');
+                        element.removeAttr('title');
+                    });
+                };
+
+                $scope.$watch('title', function(newTitle) {
+                    if($scope.tooltipElement) {
+                        $scope.updateTooltip(newTitle);
+                    }
+                });
 
                 // removes all tooltips from the document to reduce ghosts
                 $scope.removeTooltip = function () {
@@ -124,12 +141,6 @@
                 };
 
                 if (attrs.title || attrs.tooltip) {
-                    // stop the standard tooltip from being shown
-                    $timeout(function () {
-                        element.removeAttr('ng-attr-title');
-                        element.removeAttr('title');
-                    });
-
                     // attach events to show tooltip
                     element.on('mouseover', $scope.createTooltip);
                     element.on('mouseout', $scope.removeTooltip);
