@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    var directive = function ($timeout) {
+    var directive = function ($timeout, $compile) {
         return {
             restrict: 'A',
             scope: {
@@ -30,6 +30,8 @@
                 $scope.updateTooltip = function(title) {
                     $scope.tooltipElement.html(title);
 
+                    $compile($scope.tooltipElement.contents())($scope);
+
                     var css = $scope.calculatePosition($scope.tooltipElement, $scope.getDirection());
                     $scope.tooltipElement.css(css);
 
@@ -41,7 +43,7 @@
                 };
 
                 $scope.$watch('title', function(newTitle) {
-                    if($scope.tooltipElement) {
+                    if ($scope.tooltipElement) {
                         $scope.updateTooltip(newTitle);
                     }
                 });
@@ -156,7 +158,7 @@
         };
     };
 
-    directive.$inject = ['$timeout'];
+    directive.$inject = ['$timeout', '$compile'];
 
     angular
         .module('tooltips', [])
