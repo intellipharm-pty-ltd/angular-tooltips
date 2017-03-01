@@ -12,8 +12,8 @@
     "Timothy Ruhle <timothy.ruhle@intellipharm.com.au>"
   ],
   "main": [
-    "angular-tooltips.js",
-    "angular-tooltips.css"
+    "dist/angular-tooltips.js",
+    "dist/angular-tooltips.css"
   ],
   "moduleType": [
     "globals"
