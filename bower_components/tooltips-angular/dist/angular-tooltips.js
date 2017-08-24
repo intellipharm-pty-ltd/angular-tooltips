@@ -1,141 +1,160 @@
 (function() {
     'use strict';
 
-    var directive = function ($timeout) {
+    var directive = function ($timeout, $compile) {
         return {
             restrict: 'A',
-            scope: true,
+            scope: {
+                title: '@',
+                fixedPosition: '=',
+            },
             link: function ($scope, element, attrs) {
-                if (attrs.title || attrs.tooltip) {
+                // adds the tooltip to the body
+                $scope.createTooltip = function (event) {
+                    if (attrs.title || attrs.tooltip) {
+                        var direction = $scope.getDirection();
+
+                        // create the tooltip
+                        $scope.tooltipElement = angular.element('<div>').addClass('angular-tooltip');
+
+                        // append to the body
+                        angular.element(document).find('body').append($scope.tooltipElement);
+
+                        // update the contents and position
+                        $scope.updateTooltip(attrs.title || attrs.tooltip);
+
+                        // fade in
+                        $scope.tooltipElement.addClass('angular-tooltip-fade-in');
+                    }
+                };
+
+                $scope.updateTooltip = function(title) {
+                    // insert html into tooltip
+                    $scope.tooltipElement.html(title);
+
+                    // compile html contents into angularjs
+                    $compile($scope.tooltipElement.contents())($scope);
+
+                    // calculate the position of the tooltip
+                    var pos = $scope.calculatePosition($scope.tooltipElement, $scope.getDirection());
+                    $scope.tooltipElement.addClass('angular-tooltip-' + pos.direction).css(pos);
+
                     // stop the standard tooltip from being shown
                     $timeout(function () {
                         element.removeAttr('ng-attr-title');
                         element.removeAttr('title');
                     });
+                };
 
-                    element.on('mouseover', function (event) {
-                        var direction = $scope.getDirection();
+                // if the title changes the update the tooltip
+                $scope.$watch('title', function(newTitle) {
+                    if ($scope.tooltipElement) {
+                        $scope.updateTooltip(newTitle);
+                    }
+                });
 
-                        // create the tooltip
-                        var tooltip = angular.element('<div>')
-                            .addClass('angular-tooltip angular-tooltip-' + direction)
-                            .html(attrs.title || attrs.tooltip);
+                // removes all tooltips from the document to reduce ghosts
+                $scope.removeTooltip = function () {
+                    var tooltip = angular.element(document.querySelectorAll('.angular-tooltip'));
+                    // tooltip.removeClass('angular-tooltip-fade-in');
 
-                        // append to the body
-                        angular.element(document).find('body').append(tooltip);
+                    // $timeout(function() {
+                        tooltip.remove();
+                    // }, 300);
+                };
 
-                        // position the tooltip
-                        var css = $scope.calculatePosition(tooltip, direction);
+                // gets the current direction value
+                $scope.getDirection = function() {
+                    return element.attr('tooltip-direction') || element.attr('title-direction') || 'top';
+                };
 
-                        tooltip.css(css);
+                // calculates the position of the tooltip
+                $scope.calculatePosition = function(tooltip, direction) {
+                    var tooltipBounding = tooltip[0].getBoundingClientRect();
+                    var elBounding = element[0].getBoundingClientRect();
+                    var scrollLeft = window.scrollX || document.documentElement.scrollLeft;
+                    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+                    var arrow_padding = 12;
+                    var pos = {};
+                    var newDirection = null;
 
-                        // fade in
-                        tooltip.addClass('angular-tooltip-fade-in');
-                    });
+                    // calculate the left position
+                    if ($scope.stringStartsWith(direction, 'left')) {
+                        pos.left = elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft;
+                    } else if ($scope.stringStartsWith(direction, 'right')) {
+                        pos.left = elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft;
+                    } else if ($scope.stringContains(direction, 'left')) {
+                        pos.left = elBounding.left - tooltipBounding.width + arrow_padding + scrollLeft;
+                    } else if ($scope.stringContains(direction, 'right')) {
+                        pos.left = elBounding.left + elBounding.width - arrow_padding + scrollLeft;
+                    } else {
+                        pos.left = elBounding.left + (elBounding.width / 2) - (tooltipBounding.width / 2) + scrollLeft;
+                    }
 
-                    // removes all tooltips from the document to reduce ghosts
-                    $scope.removeTooltip = function () {
-                        var tooltip = angular.element(document.querySelectorAll('.angular-tooltip'));
-                        tooltip.removeClass('angular-tooltip-fade-in');
+                    // calculate the top position
+                    if ($scope.stringStartsWith(direction, 'top')) {
+                        pos.top = elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop;
+                    } else if ($scope.stringStartsWith(direction, 'bottom')) {
+                        pos.top = elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop;
+                    } else if ($scope.stringContains(direction, 'top')) {
+                        pos.top = elBounding.top - tooltipBounding.height + arrow_padding + scrollTop;
+                    } else if ($scope.stringContains(direction, 'bottom')) {
+                        pos.top = elBounding.top + elBounding.height - arrow_padding + scrollTop;
+                    } else {
+                        pos.top = elBounding.top + (elBounding.height / 2) - (tooltipBounding.height / 2) + scrollTop;
+                    }
 
-                        $timeout(function() {
-                            tooltip.remove();
-                        }, 300);
-                    };
-
-                    // gets the current direction value
-                    $scope.getDirection = function() {
-                        return element.attr('tooltip-direction') || element.attr('title-direction') || 'top';
-                    };
-
-                    $scope.calculatePosition = function(tooltip, direction) {
-                        var tooltipBounding = tooltip[0].getBoundingClientRect();
-                        var elBounding = element[0].getBoundingClientRect();
-                        var scrollLeft = window.scrollX || document.documentElement.scrollLeft;
-                        var scrollTop = window.scrollY || document.documentElement.scrollTop;
-                        var arrow_padding = 12;
-
-                        switch (direction) {
-                            case 'top':
-                            case 'top-center':
-                            case 'top-middle':
-                                return {
-                                    left: elBounding.left + (elBounding.width / 2) - (tooltipBounding.width / 2) + scrollLeft + 'px',
-                                    top: elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop + 'px',
-                                };
-                            case 'top-right':
-                                return {
-                                    left: elBounding.left + elBounding.width - arrow_padding + scrollLeft + 'px',
-                                    top: elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop + 'px',
-                                };
-                            case 'right-top':
-                                return {
-                                    left: elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft + 'px',
-                                    top: elBounding.top - tooltipBounding.height + arrow_padding + scrollTop + 'px',
-                                };
-                            case 'right':
-                            case 'right-center':
-                            case 'right-middle':
-                                return {
-                                    left: elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft + 'px',
-                                    top: elBounding.top + (elBounding.height / 2) - (tooltipBounding.height / 2) + scrollTop + 'px',
-                                };
-                            case 'right-bottom':
-                                return {
-                                    left: elBounding.left + elBounding.width + (arrow_padding / 2) + scrollLeft + 'px',
-                                    top: elBounding.top + elBounding.height - arrow_padding + scrollTop + 'px',
-                                };
-                            case 'bottom-right':
-                                return {
-                                    left: elBounding.left + elBounding.width - arrow_padding + scrollLeft + 'px',
-                                    top: elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop + 'px',
-                                };
-                            case 'bottom':
-                            case 'bottom-center':
-                            case 'bottom-middle':
-                                return {
-                                    left: elBounding.left + (elBounding.width / 2) - (tooltipBounding.width / 2) + scrollLeft + 'px',
-                                    top: elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop + 'px',
-                                };
-                            case 'bottom-left':
-                                return {
-                                    left: elBounding.left - tooltipBounding.width + arrow_padding + scrollLeft + 'px',
-                                    top: elBounding.top + elBounding.height + (arrow_padding / 2) + scrollTop + 'px',
-                                };
-                            case 'left-bottom':
-                                return {
-                                    left: elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft + 'px',
-                                    top: elBounding.top + elBounding.height - arrow_padding + scrollTop + 'px',
-                                };
-                            case 'left':
-                            case 'left-center':
-                            case 'left-middle':
-                                return {
-                                    left: elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft + 'px',
-                                    top: elBounding.top + (elBounding.height / 2) - (tooltipBounding.height / 2) + scrollTop + 'px',
-                                };
-                            case 'left-top':
-                                return {
-                                    left: elBounding.left - tooltipBounding.width - (arrow_padding / 2) + scrollLeft + 'px',
-                                    top: elBounding.top - tooltipBounding.height + arrow_padding + scrollTop + 'px',
-                                };
-                            case 'top-left':
-                                return {
-                                    left: elBounding.left - tooltipBounding.width + arrow_padding + scrollLeft + 'px',
-                                    top: elBounding.top - tooltipBounding.height - (arrow_padding / 2) + scrollTop + 'px',
-                                };
+                    // check if the tooltip is outside the bounds of the window
+                    if ($scope.fixedPosition) {
+                        if (pos.left < scrollLeft) {
+                            newDirection = direction.replace('left', 'right');
+                        } else if ((pos.left + tooltipBounding.width) > (window.innerWidth + scrollLeft)) {
+                            newDirection = direction.replace('right', 'left');
                         }
-                    };
 
+                        if (pos.top < scrollTop) {
+                            newDirection = direction.replace('top', 'bottom');
+                        } else if ((pos.top + tooltipBounding.height) > (window.innerHeight + scrollTop)) {
+                            newDirection = direction.replace('bottom', 'top');
+                        }
+
+                        if (newDirection) {
+                            return $scope.calculatePosition(tooltip, newDirection);
+                        }
+                    }
+
+                    pos.left += 'px';
+                    pos.top += 'px';
+                    pos.direction = direction;
+
+                    return pos;
+                };
+
+                $scope.stringStartsWith = function(searchString, findString) {
+                    return searchString.substr(0, findString.length) === findString;
+                };
+
+                $scope.stringContains = function(searchString, findString) {
+                    return searchString.indexOf(findString) !== -1;
+                };
+
+                if (attrs.title || attrs.tooltip) {
+                    // attach events to show tooltip
+                    element.on('mouseover', $scope.createTooltip);
                     element.on('mouseout', $scope.removeTooltip);
-                    element.on('destroy', $scope.removeTooltip);
-                    $scope.$on('$destroy', $scope.removeTooltip);
+                } else {
+                    // remove events
+                    element.off('mouseover', $scope.createTooltip);
+                    element.off('mouseout', $scope.removeTooltip);
                 }
+
+                element.on('destroy', $scope.removeTooltip);
+                $scope.$on('$destroy', $scope.removeTooltip);
             }
         };
     };
 
-    directive.$inject = ['$timeout'];
+    directive.$inject = ['$timeout', '$compile'];
 
     angular
         .module('tooltips', [])

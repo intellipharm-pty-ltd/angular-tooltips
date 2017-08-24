@@ -3,6 +3,6 @@
   "version": "0.1.0",
   "dependencies": {
     "tooltips-angular": "master",
-    "font-awesome": "fontawesome#~4.5.0"
+    "font-awesome": "fontawesome#^4.5.0"
   }
 }

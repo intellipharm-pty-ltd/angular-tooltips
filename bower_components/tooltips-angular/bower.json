@@ -1,7 +1,7 @@
 {
   "name": "angular-tooltips",
   "description": "Tooltip Directive For AngularJS",
-  "version": "0.1.1",
+  "version": "1.0.4",
   "homepage": "https://github.com/intellipharm/angular-tooltips",
   "repository": {
     "type": "git",
@@ -12,8 +12,8 @@
     "Timothy Ruhle <timothy.ruhle@intellipharm.com.au>"
   ],
   "main": [
-    "angular-tooltips.js",
-    "angular-tooltips.css"
+    "dist/angular-tooltips.js",
+    "dist/angular-tooltips.css"
   ],
   "moduleType": [
     "globals"

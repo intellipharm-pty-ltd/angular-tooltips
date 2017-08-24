@@ -70,6 +70,14 @@ but they either have requirements on other libraries or are overly convoluted in
 
 <div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>fa fa-star<span class="pl-pds">"</span></span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>This is a star!<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;</pre></div>
 
+<p>The direction of the tooltip can be specified using title-direction with the options: top, top-right, right-top, right, right-bottom, bottom-right, bottom, bottom-left, left-bottom, left, left-top, top-left</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>fa fa-star<span class="pl-pds">"</span></span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>This is a star!<span class="pl-pds">"</span> <span class="pl-e">title-direction</span>=<span class="pl-s"><span class="pl-pds">"</span>right<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;</pre></div>
+
+<p>The direction of the tooltip will automatically swap if the tooltip will sit outside of the window bounds. To stop this happening and force the direction set the fixed-position option</p>
+
+<div class="highlight highlight-text-html-basic"><pre>&lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>fa fa-star<span class="pl-pds">"</span></span> <span class="pl-e">title</span>=<span class="pl-s"><span class="pl-pds">"</span>This is a star!<span class="pl-pds">"</span> <span class="pl-e">title-direction</span>=<span class="pl-s"><span class="pl-pds">"</span>right<span class="pl-pds">"</span> <span class="pl-e">fixed-position</span>=<span class="pl-s">true</span>&gt;&lt;/<span class="pl-ent">i</span>&gt;</pre></div>
+
 <h2>
 <a id="requrements" class="anchor" href="#requrements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requrements</h2>
 
