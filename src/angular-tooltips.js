@@ -6,7 +6,7 @@
             restrict: 'A',
             scope: {
                 title: '@',
-                repositionable: '=',
+                fixedPosition: '=',
             },
             link: function ($scope, element, attrs) {
                 // adds the tooltip to the body
@@ -105,7 +105,7 @@
                     }
 
                     // check if the tooltip is outside the bounds of the window
-                    if ($scope.repositionable) {
+                    if ($scope.fixedPosition) {
                         if (pos.left < scrollLeft) {
                             newDirection = direction.replace('left', 'right');
                         } else if ((pos.left + tooltipBounding.width) > (window.innerWidth + scrollLeft)) {
