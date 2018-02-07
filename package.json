@@ -1,6 +1,6 @@
 {
   "name": "angularjs-tooltips",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "main": "dist/angular-tooltips.js",
   "engines": {
@@ -15,22 +15,22 @@
     "del": "^3.0.0",
     "glob": "^7.0.0",
     "gulp": "^3.0.0",
-    "gulp-autoprefixer": "^4.0.0",
-    "gulp-changed": "^3.0.0",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-changed": "^3.2.0",
     "gulp-cssmin": "^0.2.0",
-    "gulp-jscs": "^4.0.0",
-    "gulp-jshint": "^2.0.0",
-    "gulp-plumber": "^1.0.1",
+    "gulp-jscs": "^4.1.0",
+    "gulp-jshint": "^2.1.0",
+    "gulp-plumber": "^1.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.0.0",
-    "gulp-scss-lint": "^0.5.0",
+    "gulp-scss-lint": "^0.6.0",
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.6",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
-    "node-notifier": "^5.0.0",
+    "node-notifier": "^5.2.1",
     "require-dir": "^0.3.0",
-    "run-sequence": "^2.0.0",
+    "run-sequence": "^2.2.1",
     "vinyl-paths": "^2.0.0"
   }
 }
