@@ -17,6 +17,12 @@ Install through bower
 bower install tooltips-angular
 ```
 
+or npm
+
+```
+npm install angularjs-tooltips
+```
+
 Include the library files
 
 ```html
